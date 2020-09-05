@@ -7,6 +7,8 @@ const connectDB = require('./config/db');
 app.use(express.json({ extended: false }));
 connectDB();
 
+app.use(require('./Routes/auth'));
+
 const PORT = process.env.PORT || 5000;
 app.get('/', (req, res) => {
   res.send('done!');

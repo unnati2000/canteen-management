@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const FoodItem = new mongoose.Schema({
+const FoodItemSchema = new mongoose.Schema({
   foodItem: {
     type: String,
     required: true,
@@ -17,3 +17,5 @@ const FoodItem = new mongoose.Schema({
     required: truem,
   },
 });
+
+module.exports = mongoose.model('food', FoodItemSchema);
