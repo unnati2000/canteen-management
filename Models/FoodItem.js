@@ -14,7 +14,7 @@ const FoodItemSchema = new mongoose.Schema({
   },
   quantity: {
     type: String,
-    required: truem,
+    required: true,
   },
 });
 

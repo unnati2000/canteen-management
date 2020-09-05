@@ -22,7 +22,6 @@ router.post('/signup', async (req, res) => {
       isAdmin,
     });
     await user.save();
-    console.log('saved');
 
     const payload = {
       user: {
