@@ -1,4 +1,4 @@
 {
-  "MongoURI": "mongodb+srv://unnati:unnati@cluster0.nt2we.mongodb.net/<dbname>?retryWrites=true&w=majority",
+  "MongoURI": "mongodb+srv://unnati:unnati@cluster0.muvzn.mongodb.net/<dbname>?retryWrites=true&w=majority",
   "JWTSecret": "aSecretStringForJWT"
 }
