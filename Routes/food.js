@@ -29,6 +29,23 @@ router.post('/additem', auth, async (req, res) => {
   }
 });
 
+// delete item: DELETE
+
+router.delete('/delete/:id', auth, async (req, res) => {
+  try {
+    const id = req.user.id;
+    const isadmin = await User.findById(id);
+    if (isadmin.isAdmin === true) {
+      const del = await Food.findByIdAndDelete(req.params.id);
+      res.json('deleted');
+    } else {
+      res.json('unauthorised');
+    }
+  } catch (error) {
+    console.log(error);
+  }
+});
+
 // get chinese: GET
 
 router.get('/chinese', auth, async (req, res) => {
