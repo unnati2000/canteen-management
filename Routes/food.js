@@ -4,31 +4,47 @@ const User = require('../Models/auth');
 const Food = require('../Models/FoodItem');
 const router = express.Router();
 const auth = require('../Middleware/auth');
+const { check, validationResult } = require('express-validator');
 
 // add item : POST
-router.post('/additem', auth, async (req, res) => {
-  try {
-    const id = req.user.id;
-    const isadmin = await User.findById(id);
-    if (isadmin.isAdmin === true) {
-      const { foodItem, name, price, quantity } = req.body;
-      const food = new Food({
-        foodItem,
-        name,
-        price,
-        quantity,
-      });
-
-      await food.save();
-      res.json('added item');
-    } else {
-      res.json('Unauthorized');
+router.post(
+  '/additem',
+  [
+    auth,
+    check('name', 'FoodName is required'),
+    check('foodItem', 'Food category is required'),
+    check('price', 'Price is required'),
+    check('quantity', 'Qunatity is required'),
+  ],
+  async (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
     }
-  } catch (error) {
-    console.error(err.message);
-    res.status(500).send('Server Error');
+
+    try {
+      const id = req.user.id;
+      const isadmin = await User.findById(id);
+      if (isadmin.isAdmin === true) {
+        const { foodItem, name, price, quantity } = req.body;
+        const food = new Food({
+          foodItem,
+          name,
+          price,
+          quantity,
+        });
+
+        await food.save();
+        res.json('added item');
+      } else {
+        res.json('Unauthorized');
+      }
+    } catch (error) {
+      console.error(err.message);
+      res.status(500).send('Server Error');
+    }
   }
-});
+);
 
 // delete item: DELETE
 
