@@ -25,7 +25,8 @@ router.post('/additem', auth, async (req, res) => {
       res.json('Unauthorized');
     }
   } catch (error) {
-    console.log(error);
+    console.error(err.message);
+    res.status(500).send('Server Error');
   }
 });
 
@@ -42,7 +43,8 @@ router.delete('/delete/:id', auth, async (req, res) => {
       res.json('unauthorised');
     }
   } catch (error) {
-    console.log(error);
+    console.error(err.message);
+    res.status(500).send('Server Error');
   }
 });
 
@@ -53,7 +55,8 @@ router.get('/chinese', auth, async (req, res) => {
     const chinese = await Food.find({ foodItem: 'chinese' });
     res.json(chinese);
   } catch (error) {
-    console.log(error);
+    console.error(err.message);
+    res.status(500).send('Server Error');
   }
 });
 
@@ -63,7 +66,8 @@ router.get('/breakfast', auth, async (req, res) => {
     const breakfast = await Food.find({ foodItem: 'breakfast' });
     res.json(breakfast);
   } catch (error) {
-    console.log(error);
+    console.error(err.message);
+    res.status(500).send('Server Error');
   }
 });
 
@@ -73,7 +77,8 @@ router.get('/chat', auth, async (req, res) => {
     const chat = await Food.find({ foodItem: 'chat' });
     res.json(chat);
   } catch (error) {
-    console.log(error);
+    console.error(err.message);
+    res.status(500).send('Server Error');
   }
 });
 
@@ -83,7 +88,8 @@ router.get('/indian', auth, async (req, res) => {
     const indian = await Food.find({ foodItem: 'indian' });
     res.json(indian);
   } catch (error) {
-    console.log(error);
+    console.error(err.message);
+    res.status(500).send('Server Error');
   }
 });
 

@@ -5,82 +5,112 @@ const bcrypt = require('bcryptjs');
 const router = express.Router();
 const config = require('config');
 const jwt = require('jsonwebtoken');
+const { check, validationResult } = require('express-validator');
 const auth = require('../Middleware/auth');
 
 // sign up: POST
-router.post('/signup', async (req, res) => {
-  const { name, email, password, branch, isAdmin } = req.body;
-  console.log(email, password);
-  try {
-    const salt = await bcrypt.genSalt(12);
-    const encryptedpassword = await bcrypt.hash(password, salt);
-    const user = new User({
-      name,
-      email,
-      password: encryptedpassword,
-      branch,
-      isAdmin,
-    });
-    await user.save();
+router.post(
+  '/signup',
+  [
+    check('name', 'Name is required').not().isEmpty(),
+    check('email', 'Please include a valid email').isEmail(),
+    check(
+      'password',
+      'Please enter a password with 6 or more characters'
+    ).isLength({ min: 6 }),
+  ],
+  async (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
+    const { name, email, password, branch, isAdmin } = req.body;
+    console.log(email, password);
+    try {
+      const salt = await bcrypt.genSalt(12);
+      const encryptedpassword = await bcrypt.hash(password, salt);
+      const user = new User({
+        name,
+        email,
+        password: encryptedpassword,
+        branch,
+        isAdmin,
+      });
+      await user.save();
 
-    const payload = {
-      user: {
-        id: user.id,
-      },
-    };
+      const payload = {
+        user: {
+          id: user.id,
+        },
+      };
 
-    jwt.sign(payload, config.get('JWTSecret'), (err, token) => {
-      if (err) {
-        throw err;
-      }
-      res.json({ token });
-    });
-  } catch (error) {
-    console.log(error.message);
-    res.status(500).send('Server Token error');
+      jwt.sign(payload, config.get('JWTSecret'), (err, token) => {
+        if (err) {
+          throw err;
+        }
+        res.json({ token });
+      });
+    } catch (error) {
+      console.log(error.message);
+      res.status(500).send('Server Token error');
+    }
   }
-});
+);
 
 //sign in: POST
-router.post('/signin', async (req, res) => {
-  const { email, password } = req.body;
-
-  try {
-    let user = await User.findOne({ email });
-    if (!user) {
-      return res
-        .status(400)
-        .json({ errors: [{ msg: 'Email does not exist' }] });
+router.post(
+  '/signin',
+  [
+    check('email', 'Please include a valid email').isEmail(),
+    check('password', 'Password is required').exists(),
+  ],
+  async (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
     }
 
-    // check password
-    const isMatch = await bcrypt.compare(password, user.password);
-    if (!isMatch) {
-      return res.status(400).json({ errors: [{ msg: 'Invalid Credentials' }] });
-    }
+    const { email, password } = req.body;
 
-    // JWT Token
-
-    const payload = {
-      user: {
-        id: user.id,
-      },
-    };
-
-    jwt.sign(
-      payload,
-      config.get('JWTSecret'),
-
-      (err, token) => {
-        if (err) throw err;
-        res.json({ token });
+    try {
+      let user = await User.findOne({ email });
+      if (!user) {
+        return res
+          .status(400)
+          .json({ errors: [{ msg: 'Email does not exist' }] });
       }
-    );
-  } catch (error) {
-    console.log(err.message);
-    res.status(500).send('Server error');
+
+      // check password
+      const isMatch = await bcrypt.compare(password, user.password);
+      if (!isMatch) {
+        return res
+          .status(400)
+          .json({ errors: [{ msg: 'Invalid Credentials' }] });
+      }
+
+      // JWT Token
+
+      const payload = {
+        user: {
+          id: user.id,
+        },
+      };
+
+      jwt.sign(
+        payload,
+        config.get('JWTSecret'),
+
+        (err, token) => {
+          if (err) throw err;
+          res.json({ token });
+        }
+      );
+    } catch (error) {
+      console.log(err.message);
+      res.status(500).send('Server error');
+    }
   }
-});
+);
 
 //get user: GET
 
