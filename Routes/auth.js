@@ -76,6 +76,9 @@ router.post(
 
     try {
       let user = await User.findOne({ email });
+      console.log('req.user.password', user.password);
+      console.log('req.body.password', req.body.password);
+
       if (!user) {
         return res
           .status(400)
@@ -83,7 +86,9 @@ router.post(
       }
 
       // check password
+
       const isMatch = await bcrypt.compare(password, user.password);
+
       if (!isMatch) {
         return res
           .status(400)

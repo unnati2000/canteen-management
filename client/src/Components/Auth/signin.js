@@ -13,11 +13,11 @@ const SignIn = ({ signin, isAuthenticated }) => {
   const { email, password } = formData;
   console.log(formData);
   const onChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: [e.target.value] });
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
   const onSubmit = (e) => {
     e.preventDefault();
-    signin(email, password);
+    signin({ email, password });
   };
 
   if (isAuthenticated) {
@@ -53,7 +53,7 @@ const SignIn = ({ signin, isAuthenticated }) => {
             />
             <br />
 
-            <button>Submit</button>
+            <button type="submit">Submit</button>
           </form>
         </div>
       </div>

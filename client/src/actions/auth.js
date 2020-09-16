@@ -18,25 +18,25 @@ export const loadUser = () => async (dispatch) => {
 };
 
 export const signup = (formData) => async (dispatch) => {
+  console.log(formData);
   try {
-    console.log('step 1');
     const res = await axios.post('/signup', formData);
-    console.log('step 2');
+
     dispatch({
       type: SIGNUP,
       payload: res.data,
     });
-    console.log('step 3');
+
     dispatch(loadUser());
   } catch (error) {
     console.log(error);
   }
 };
 
-export const signin = (email, password) => async (dispatch) => {
-  const body = { email, password };
+export const signin = (formData) => async (dispatch) => {
+  console.log(formData);
   try {
-    const res = await axios.post('/signin', body);
+    const res = await axios.post('/signin', formData);
     dispatch({
       type: SIGNIN,
       payload: res.data,
