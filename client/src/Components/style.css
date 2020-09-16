@@ -1,0 +1,340 @@
+/* #########################  SIGN UP ########################## */
+
+/* d789d7,  9d65c9, 916dd5, 7e0cf5 */
+
+/* 05dfd7, 00bcd4, 00b7c2, 87dfd6, 5fdde5, 40bad5, 00bcd4 */
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Raleway:wght@400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Montserrat:wght@500&family=Roboto:wght@400&family=Mulish:wght@500&family=Poppins&display=swap');
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Raleway', sans-serif;
+}
+.signup {
+  background: linear-gradient(
+      to right,
+      rgba(1, 1, 1, 0.79),
+      rgba(21, 31, 36, 0.79)
+    ),
+    url('https://www.healthhub.sg/sites/assets/Assets/Categories/Food%20N%20Nutrition/easter-bunny-lunch-fun-food-art-for-kids.jpg');
+  background-size: cover;
+  height: 120vh;
+  padding: 100px;
+}
+.signup_form h2 {
+  padding: 30px 0;
+}
+
+.signup_form {
+  background-color: white;
+  height: 680px;
+  margin: 0 170px;
+  text-align: center;
+  border-radius: 10px;
+  padding: 20px 0;
+}
+.signup_form label {
+  font-size: 20px;
+}
+
+.signup_form input {
+  border: none;
+  padding: 15px 40px;
+  font-size: 17px;
+  border-radius: 15px;
+  width: 50%;
+  margin: 20px 0;
+  box-shadow: 0px 18px 38px rgba(0, 0, 0, 0.1), 0px 10px 10px rgba(0, 0, 0, 0.1);
+}
+
+.signup_form input:focus {
+  outline: none;
+  box-shadow: 0px 10px 18px rgba(0, 0, 0, 0.1), 0px 10px 10px rgba(0, 0, 0, 0.1);
+}
+
+.signup_form button {
+  margin-top: 30px;
+  padding: 15px 50px;
+  font-size: 18px;
+  border-radius: 30px;
+  border: none;
+  background-color: #111111;
+  box-shadow: 0 28px 48px rgba(75, 10, 124, 0.4),
+    0px 10px 10px rgba(157, 101, 201, 0.4);
+  color: white;
+}
+
+.signup_form button:focus {
+  outline: none;
+}
+
+.signup_form select {
+  padding: 10px 20px;
+  margin: 20px 0px;
+}
+
+/* ########################### HOME ###################################3 */
+
+#logo {
+  height: 70px;
+  width: 70px;
+  fill: #ffffff;
+  display: flex;
+  margin: 25px;
+  position: absolute;
+}
+
+.home_header {
+  background: linear-gradient(
+      to right,
+      rgba(1, 1, 1, 0.9),
+      rgba(21, 31, 36, 0.8)
+    ),
+    url('https://www.pembrokeshire.gov.uk/picvieworiginal.asp?image_id=3305');
+  height: 100vh;
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: white;
+}
+
+.content {
+  text-align: center;
+  padding-top: 150px;
+}
+
+.content h1 {
+  font-size: 70px;
+  padding: 20px 0;
+}
+.content h3 {
+  font-size: 50px;
+  padding: 20px 0;
+}
+
+.content button {
+  color: rgb(112, 108, 97);
+  margin-top: 20px;
+  padding: 20px 60px;
+  border-radius: 30px;
+  border: none;
+  font-size: 20px;
+  background: #ffffff;
+  font-weight: bold;
+  color: black;
+  box-shadow: 0 28px 30px rgba(112, 108, 97, 0.6),
+    0px 10px 10px rgba(112, 108, 97, 0.7);
+}
+
+.content button:hover {
+  cursor: pointer;
+  background: #ffffff;
+  transform: scale(1.1);
+  animation: 0.5s ease-out;
+}
+
+.content button:focus {
+  outline: none;
+}
+
+.main_div h1 {
+  text-align: center;
+  padding: 20px 0;
+  font-size: 50px;
+}
+
+.menu {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 50px;
+  text-align: center;
+  padding: 40px 30px;
+}
+.variety {
+  padding: 20px 30px;
+  border-radius: 10px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 400px;
+  color: #63686e;
+  -webkit-box-shadow: 10px 10px 25px 15px rgba(0, 0, 0, 0.27);
+  box-shadow: 10px 10px 25px 15px rgba(0, 0, 0, 0.27);
+  margin-bottom: 50px;
+}
+
+.variety:hover {
+  -webkit-box-shadow: 10px 10px 23px -4px rgba(0, 0, 0, 0.39);
+  box-shadow: 10px 10px 23px -4px rgba(0, 0, 0, 0.39);
+}
+
+.variety h2 {
+  padding: 15px 0;
+  font-size: 40px;
+  color: white;
+}
+
+.variety p {
+  padding: 10px;
+  font-size: 20px;
+  color: #929aab;
+}
+
+.variety button {
+  font-size: 18px;
+  padding: 10px 45px;
+}
+.variety.breakfast {
+  background: linear-gradient(
+      to right,
+      rgba(1, 1, 1, 0.9),
+      rgba(21, 31, 36, 0.8)
+    ),
+    url('https://i.cdn.newsbytesapp.com/images/158_5981546959307.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.variety.chinese {
+  background: linear-gradient(
+      to right,
+      rgba(1, 1, 1, 0.9),
+      rgba(21, 31, 36, 0.8)
+    ),
+    url('https://mirbakawal.com/assets/images/food/chinese.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.variety.indian {
+  background: linear-gradient(
+      to right,
+      rgba(1, 1, 1, 0.9),
+      rgba(21, 31, 36, 0.8)
+    ),
+    url('https://i2.wp.com/www.vegrecipesofindia.com/wp-content/uploads/2010/01/masala-dosa-recipe-restaurant-style-500x500.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.variety.chat {
+  background: linear-gradient(
+      to right,
+      rgba(1, 1, 1, 0.9),
+      rgba(21, 31, 36, 0.8)
+    ),
+    url('https://i2.wp.com/www.vegrecipesofindia.com/wp-content/uploads/2011/11/sev-puri-recipe13-500x375.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.variety button {
+  margin-top: 30px;
+  border: none;
+  font-size: 18px;
+  background: #ffffff;
+  color: black;
+  box-shadow: 0 28px 30px rgba(112, 108, 97, 0.6),
+    0px 10px 10px rgba(112, 108, 97, 0.7);
+  border-radius: 20px;
+  font-weight: bold;
+}
+
+.footer {
+  background-color: #111111;
+  height: 120px;
+  text-align: center;
+  font-size: 20px;
+  color: #929aab;
+  border-top-right-radius: 130px;
+}
+
+.footer p {
+  padding-top: 20px;
+}
+.icons {
+  color: #929aab;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+#Capa_1,
+#Outline,
+#Shape,
+#brfast {
+  height: 100px;
+  width: 100px;
+  fill: #929aab;
+}
+
+/* ############################### ADMIN ########################################## */
+.admin {
+  background: linear-gradient(
+    to right,
+    rgba(1, 1, 1, 0.79),
+    rgba(21, 31, 36, 0.79)
+  );
+  height: 100vh;
+}
+
+.admin_form {
+  background-color: white;
+  height: 800px;
+  margin: 0 170px;
+  text-align: center;
+  border-radius: 10px;
+  padding: 60px 0;
+}
+
+.admin_form input {
+  border: none;
+  padding: 15px 40px;
+  font-size: 17px;
+  border-radius: 15px;
+  width: 50%;
+  margin: 20px 0;
+  box-shadow: 0px 18px 38px rgba(0, 0, 0, 0.1), 0px 10px 10px rgba(0, 0, 0, 0.1);
+}
+.admin_form input:focus {
+  outline: none;
+  box-shadow: 0px 10px 18px rgba(94, 58, 58, 0.4),
+    0px 10px 10px rgba(0, 0, 0, 0.1);
+}
+
+.admin_form button {
+  margin-top: 30px;
+  padding: 15px 50px;
+  font-size: 18px;
+  border-radius: 30px;
+  border: none;
+  background-color: #111111;
+  box-shadow: 0 28px 48px rgba(75, 10, 124, 0.4),
+    0px 10px 10px rgba(157, 101, 201, 0.4);
+  color: white;
+  font-weight: bold;
+}
+
+.admin_form button:hover {
+  box-shadow: 0 28px 28px rgba(75, 10, 124, 0.2),
+    0px 10px 10px rgba(157, 101, 201, 0.2);
+}
+
+.admin_form button {
+  outline: none;
+}
+
+.admin_form label {
+  font-size: 20px;
+}
+
+.admin_form select {
+  padding: 10px 30px;
+  margin: 20px;
+  font-size: 20px;
+}
+
+.admin_form h2 {
+  font-size: 50px;
+  padding: 20px 0;
+}

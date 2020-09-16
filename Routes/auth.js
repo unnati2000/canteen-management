@@ -12,20 +12,22 @@ const auth = require('../Middleware/auth');
 router.post(
   '/signup',
   [
-    check('name', 'Name is required').not().isEmpty(),
-    check('email', 'Please include a valid email').isEmail(),
-    check(
-      'password',
-      'Please enter a password with 6 or more characters'
-    ).isLength({ min: 6 }),
+    // check('name', 'Name is required').not().isEmpty(),
+    // check('email', 'Please include a valid email').isEmail(),
+    // check(
+    //   'password',
+    //   'Please enter a password with 6 or more characters'
+    // ).isLength({ min: 6 }),
   ],
   async (req, res) => {
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-      return res.status(400).json({ errors: errors.array() });
-    }
-    const { name, email, password, branch, isAdmin } = req.body;
-    console.log(email, password);
+    // const errors = validationResult(req);
+    // if (!errors.isEmpty()) {
+    //   console.log(errors.array());
+    //   return res.status(400).json({ errors: errors.array() });
+    // }
+    //console.log(req.user);
+    const { name, email, password, branch } = req.body;
+    console.log(email, password, name, branch);
     try {
       const salt = await bcrypt.genSalt(12);
       const encryptedpassword = await bcrypt.hash(password, salt);
@@ -34,7 +36,7 @@ router.post(
         email,
         password: encryptedpassword,
         branch,
-        isAdmin,
+        isAdmin: false,
       });
       await user.save();
 
@@ -60,15 +62,15 @@ router.post(
 //sign in: POST
 router.post(
   '/signin',
-  [
-    check('email', 'Please include a valid email').isEmail(),
-    check('password', 'Password is required').exists(),
-  ],
+  // [
+  //   check('email', 'Please include a valid email').isEmail(),
+  //   check('password', 'Password is required').exists(),
+  // ],
   async (req, res) => {
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-      return res.status(400).json({ errors: errors.array() });
-    }
+    // const errors = validationResult(req);
+    // if (!errors.isEmpty()) {
+    //   return res.status(400).json({ errors: errors.array() });
+    // }
 
     const { email, password } = req.body;
 
@@ -106,7 +108,7 @@ router.post(
         }
       );
     } catch (error) {
-      console.log(err.message);
+      console.log(error.message);
       res.status(500).send('Server error');
     }
   }
