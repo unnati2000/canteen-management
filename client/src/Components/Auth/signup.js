@@ -12,7 +12,7 @@ const SignUp = ({ signup, isAuthenticated }) => {
   });
 
   const { email, password, name, branch } = formData;
-  console.log(formData);
+
   const onChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
 

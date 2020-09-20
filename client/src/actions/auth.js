@@ -18,7 +18,6 @@ export const loadUser = () => async (dispatch) => {
 };
 
 export const signup = (formData) => async (dispatch) => {
-  console.log(formData);
   try {
     const res = await axios.post('/signup', formData);
 

@@ -1,6 +1,11 @@
-import React from 'react';
-
-const Home = () => {
+import React, { useState } from 'react';
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { GetAllSelectedItems } from '../../actions/food';
+const Home = ({ GetAllSelectedItems }) => {
+  useState(() => {
+    GetAllSelectedItems();
+  }, []);
   return (
     <div>
       <div className="home_header">
@@ -45,7 +50,13 @@ const Home = () => {
               </svg>
             </p>
 
-            <button>View More</button>
+            <Link
+              className="button"
+              onClick={() => GetAllSelectedItems('breakfast')}
+              to="/breakfast"
+            >
+              View More
+            </Link>
           </div>
           <div className="variety chinese">
             <h2>Chinese</h2>
@@ -61,7 +72,13 @@ const Home = () => {
               </svg>
             </p>
 
-            <button>View More</button>
+            <Link
+              className="button"
+              onClick={() => GetAllSelectedItems('chinese')}
+              to="/chinese"
+            >
+              View More
+            </Link>
           </div>
           <div className="variety indian">
             <h2>Indian</h2>
@@ -79,7 +96,13 @@ const Home = () => {
                 </g>
               </svg>
             </p>
-            <button>View More</button>
+            <Link
+              className="button"
+              to="/indian"
+              onClick={() => GetAllSelectedItems('indian')}
+            >
+              View More
+            </Link>
           </div>
           <div className="variety chat">
             <h2>Chat</h2>
@@ -97,9 +120,16 @@ const Home = () => {
                 />
               </svg>
             </p>
-            <button>View More</button>
+            <Link
+              className="button"
+              onClick={() => GetAllSelectedItems('chat')}
+              to="/chat"
+            >
+              View More
+            </Link>
           </div>
         </div>
+        <Link to="/orders">Orders</Link>
       </div>
       <div className="footer">
         <p>Khana order karna</p>
@@ -113,4 +143,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default connect(null, { GetAllSelectedItems })(Home);

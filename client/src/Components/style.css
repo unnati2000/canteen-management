@@ -126,13 +126,15 @@
   color: black;
   box-shadow: 0 28px 30px rgba(112, 108, 97, 0.6),
     0px 10px 10px rgba(112, 108, 97, 0.7);
+  transition: 0.2s ease-in-out;
 }
 
 .content button:hover {
   cursor: pointer;
   background: #ffffff;
   transform: scale(1.1);
-  animation: 0.5s ease-out;
+
+  /* animation: 0.5s ease-out; */
 }
 
 .content button:focus {
@@ -181,10 +183,6 @@
   color: #929aab;
 }
 
-.variety button {
-  font-size: 18px;
-  padding: 10px 45px;
-}
 .variety.breakfast {
   background: linear-gradient(
       to right,
@@ -229,16 +227,19 @@
   background-size: cover;
 }
 
-.variety button {
+.variety .button {
   margin-top: 30px;
   border: none;
   font-size: 18px;
+  margin-top: 50px;
+  padding: 10px 40px;
   background: #ffffff;
   color: black;
   box-shadow: 0 28px 30px rgba(112, 108, 97, 0.6),
     0px 10px 10px rgba(112, 108, 97, 0.7);
   border-radius: 20px;
   font-weight: bold;
+  text-decoration: none;
 }
 
 .footer {
@@ -266,6 +267,7 @@
   height: 100px;
   width: 100px;
   fill: #929aab;
+  margin-bottom: 60px;
 }
 
 /* ############################### ADMIN ########################################## */
@@ -337,4 +339,98 @@
 .admin_form h2 {
   font-size: 50px;
   padding: 20px 0;
+}
+
+/* ################################## MENu ###################################### */
+.chinese_nav {
+  display: flex;
+  justify-content: space-evenly;
+  font-size: 20px;
+  padding: 30px 0;
+  list-style: none;
+  background: #111111;
+  color: #929aab;
+}
+
+.food_menu {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 50px;
+}
+
+.food_item {
+  padding: 40px 50px;
+  box-shadow: 0 28px 30px rgba(112, 108, 97, 0.6),
+    0px 10px 10px rgba(112, 108, 97, 0.7);
+  border-radius: 15px;
+}
+
+.food_item button {
+  margin: 20px 0;
+  padding: 10px 40px;
+  border-radius: 10px;
+  font-size: 17px;
+  border: none;
+  background: #111111;
+  box-shadow: 0 28px 48px rgba(75, 10, 124, 0.4),
+    0px 10px 10px rgba(157, 101, 201, 0.4);
+  color: #929aab;
+}
+
+.food_item button:hover {
+  box-shadow: 0 20px 28px rgba(75, 10, 124, 0.2),
+    0px 10px 10px rgba(157, 101, 201, 0.2);
+}
+.food_div {
+  text-align: center;
+}
+
+.food_item:hover {
+  box-shadow: 0 10px 15px rgba(112, 108, 97, 0.3),
+    0px 10px 10px rgba(112, 108, 97, 0.4);
+}
+.food_item h2 {
+  padding: 10px 0;
+}
+
+.food_item h3 {
+  padding: 10px 0;
+}
+
+.food_item img {
+  height: 200px;
+  width: 200px;
+}
+
+/* ################################ ADMIN CONTROL ########################################### */
+.admin_control {
+  align-items: center;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.order {
+  text-align: center;
+}
+
+.orders {
+  background: #111111;
+  color: #929aab;
+  padding: 20px;
+  text-align: center;
+}
+
+.canteen_table {
+  display: flex;
+  margin-top: 30px;
+  text-align: center;
+  justify-content: center;
+}
+
+.canteen_table table {
+  font-size: 20px;
+}
+
+.canteen_table table th {
+  padding-left: 60px;
 }

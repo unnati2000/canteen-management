@@ -9,38 +9,32 @@ const { check, validationResult } = require('express-validator');
 // add item : POST
 router.post(
   '/additem',
-  [
-    auth,
-    check('name', 'FoodName is required'),
-    check('foodItem', 'Food category is required'),
-    check('price', 'Price is required'),
-    check('quantity', 'Qunatity is required'),
-  ],
+  // [
+  //   auth,
+  //   check('name', 'FoodName is required'),
+  //   check('foodItem', 'Food category is required'),
+  //   check('price', 'Price is required'),
+  //   check('quantity', 'Qunatity is required'),
+  // ],
   async (req, res) => {
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-      return res.status(400).json({ errors: errors.array() });
-    }
+    // const errors = validationResult(req);
+    // if (!errors.isEmpty()) {
+    //   return res.status(400).json({ errors: errors.array() });
+    // }
 
     try {
-      const id = req.user.id;
-      const isadmin = await User.findById(id);
-      if (isadmin.isAdmin === true) {
-        const { foodItem, name, price, quantity } = req.body;
-        const food = new Food({
-          foodItem,
-          name,
-          price,
-          quantity,
-        });
+      const { foodItem, name, price, quantity } = req.body;
+      const food = new Food({
+        foodItem,
+        name,
+        price,
+        quantity,
+      });
 
-        await food.save();
-        res.json('added item');
-      } else {
-        res.json('Unauthorized');
-      }
+      await food.save();
+      res.json('added item');
     } catch (error) {
-      console.error(err.message);
+      console.error(error.message);
       res.status(500).send('Server Error');
     }
   }
@@ -66,46 +60,47 @@ router.delete('/delete/:id', auth, async (req, res) => {
 
 // get chinese: GET
 
-router.get('/chinese', auth, async (req, res) => {
-  try {
-    const chinese = await Food.find({ foodItem: 'chinese' });
-    res.json(chinese);
-  } catch (error) {
-    console.error(err.message);
-    res.status(500).send('Server Error');
+router.get('/:food', auth, async (req, res) => {
+  const food = req.params.food;
+  if (food === 'chinese') {
+    try {
+      const chinese = await Food.find({ foodItem: 'chinese' });
+      res.json(chinese);
+      //console.log(chinese);
+    } catch (error) {
+      console.error(err.message);
+      res.status(500).send('Server Error');
+    }
   }
-});
 
-// get breakfast: GET
-router.get('/breakfast', auth, async (req, res) => {
-  try {
-    const breakfast = await Food.find({ foodItem: 'breakfast' });
-    res.json(breakfast);
-  } catch (error) {
-    console.error(err.message);
-    res.status(500).send('Server Error');
+  if (food === 'breakfast') {
+    try {
+      const breakfast = await Food.find({ foodItem: 'breakfast' });
+      res.json(breakfast);
+    } catch (error) {
+      console.error(err.message);
+      res.status(500).send('Server Error');
+    }
   }
-});
 
-// get CHAT: GET
-router.get('/chat', auth, async (req, res) => {
-  try {
-    const chat = await Food.find({ foodItem: 'chat' });
-    res.json(chat);
-  } catch (error) {
-    console.error(err.message);
-    res.status(500).send('Server Error');
+  if (food === 'indian') {
+    try {
+      const indian = await Food.find({ foodItem: 'indian' });
+      res.json(indian);
+    } catch (error) {
+      console.error(err.message);
+      res.status(500).send('Server Error');
+    }
   }
-});
 
-// get Indian: GET
-router.get('/indian', auth, async (req, res) => {
-  try {
-    const indian = await Food.find({ foodItem: 'indian' });
-    res.json(indian);
-  } catch (error) {
-    console.error(err.message);
-    res.status(500).send('Server Error');
+  if (food === 'chat') {
+    try {
+      const chat = await Food.find({ foodItem: 'chat' });
+      res.json(chat);
+    } catch (error) {
+      console.error(err.message);
+      res.status(500).send('Server Error');
+    }
   }
 });
 

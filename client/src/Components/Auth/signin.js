@@ -11,7 +11,7 @@ const SignIn = ({ signin, isAuthenticated }) => {
   });
 
   const { email, password } = formData;
-  console.log(formData);
+
   const onChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -19,10 +19,10 @@ const SignIn = ({ signin, isAuthenticated }) => {
     e.preventDefault();
     signin({ email, password });
   };
-
   if (isAuthenticated) {
     return <Redirect to="/" />;
   }
+
   return (
     <div>
       <div className="signup">
