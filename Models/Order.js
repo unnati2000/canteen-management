@@ -6,6 +6,10 @@ const OrderSchema = new mongoose.Schema({
   },
   orders: [
     {
+      foodItem: {
+        type: String,
+        required: true,
+      },
       name: {
         type: String,
         required: true,
@@ -20,6 +24,13 @@ const OrderSchema = new mongoose.Schema({
       },
     },
   ],
+  totalPrice: {
+    type: Number,
+  },
+  isOpen: {
+    type: Boolean,
+    default: true,
+  },
 });
 
 module.exports = mongoose.model('order', OrderSchema);

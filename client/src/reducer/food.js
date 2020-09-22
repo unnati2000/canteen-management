@@ -1,7 +1,6 @@
 import { GET_ITEM, ORDERS } from '../actions/types';
 const initialState = {
   food: [],
-  orders: [],
 };
 
 export default function (state = initialState, action) {
@@ -13,12 +12,7 @@ export default function (state = initialState, action) {
         food: payload,
       };
     }
-    case ORDERS: {
-      return {
-        ...state,
-        orders: payload,
-      };
-    }
+
     default: {
       return {
         ...state,
