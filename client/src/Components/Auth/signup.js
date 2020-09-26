@@ -3,6 +3,7 @@ import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { signup } from '../../actions/auth';
 import '../style.css';
+import { setAlert } from '../../actions/alert';
 const SignUp = ({ signup, isAuthenticated }) => {
   const [formData, setFormData] = useState({
     name: '',
@@ -19,6 +20,7 @@ const SignUp = ({ signup, isAuthenticated }) => {
   const onSubmit = (e) => {
     e.preventDefault();
     signup({ email, password, name, branch });
+    setAlert('Test');
   };
 
   if (isAuthenticated) {
@@ -63,7 +65,8 @@ const SignUp = ({ signup, isAuthenticated }) => {
             <label>Enter your branch</label>
             <br />
             <select name="branch" value={branch} onChange={onChange} id="cars">
-              <option disabled value="choose"></option>
+              <option value="null">Select your option </option>
+
               <option value="CMPN">CMPN</option>
               <option value="IT">IT</option>
               <option value="EXTC">EXTC</option>

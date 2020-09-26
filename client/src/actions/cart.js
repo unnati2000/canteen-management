@@ -4,6 +4,7 @@ import {
   CLEAR_ITEM_FROM_CART,
   REMOVE_FROM_CART,
   POST_HISTORY,
+  GET_HISTORY,
 } from './types';
 
 export const AddToCart = (item) => ({
@@ -22,11 +23,24 @@ export const removeFromCart = (item) => ({
 });
 
 export const PostHistory = (formData) => async (dispatch) => {
-  console.log(formData);
   try {
     const res = await axios.post('/orders', formData);
     dispatch({
       type: POST_HISTORY,
+      payload: res.data,
+    });
+    console.log(res.data);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const GetHistory = () => async (dispatch) => {
+  try {
+    const res = await axios.get('/userorder');
+
+    dispatch({
+      type: GET_HISTORY,
       payload: res.data,
     });
   } catch (error) {

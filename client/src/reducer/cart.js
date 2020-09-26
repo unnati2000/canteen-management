@@ -3,6 +3,7 @@ import {
   CLEAR_ITEM_FROM_CART,
   REMOVE_FROM_CART,
   POST_HISTORY,
+  GET_HISTORY,
 } from '../actions/types';
 import { removeFromCart, addToCart, getCartTotal } from '../Utils/cart';
 const initialState = {
@@ -35,6 +36,12 @@ export default function (state = initialState, action) {
       };
     }
     case POST_HISTORY: {
+      return {
+        ...state,
+        history: payload,
+      };
+    }
+    case GET_HISTORY: {
       return {
         ...state,
         history: payload,

@@ -1,27 +1,32 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
-
 import { AddFood } from '../../actions/admin';
 const Admin = ({ AddFood, admin }) => {
   const [formData, setFormData] = useState({
     foodItem: '',
     name: '',
     price: '',
-    quantity: '',
+    postImage: '',
   });
 
-  const { foodItem, name, price, quantity } = formData;
+  const { foodItem, name, price, postImage } = formData;
 
   const onChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
-
-  console.log(formData);
+  const onImageSelect = (e) => {
+    setFormData({ ...formData, postImage: e.target.files });
+  };
 
   const onSubmit = (e) => {
     e.preventDefault();
-    AddFood({ foodItem, name, price, quantity });
+    const food = new FormData();
+    food.append('foodItem', foodItem);
+    food.append('name', name);
+    food.append('price', price);
+
+    food.append('postImage', postImage[0]);
+    AddFood(food);
     window.location.reload();
   };
 
@@ -31,6 +36,7 @@ const Admin = ({ AddFood, admin }) => {
         <div className="admin_card">
           <form onSubmit={onSubmit} className="admin_form">
             <h2>Admin only</h2>
+            <h3>Add food Item</h3>
             <label>Enter your option</label>
             <br />
             <select
@@ -39,10 +45,12 @@ const Admin = ({ AddFood, admin }) => {
               value={foodItem}
               id="cars"
             >
-              <option value="BreakFast">Breakfast</option>
-              <option value="Chinese">Chinese</option>
-              <option value="Indian">Indian</option>
-              <option value="Chat">Chat</option>
+              <option value="null">Select your option</option>
+
+              <option value="breakfast">Breakfast</option>
+              <option value="chinese">Chinese</option>
+              <option value="indian">Indian</option>
+              <option value="chat">Chat</option>
             </select>
             <br />
             <label>Enter Name of food Item</label>
@@ -65,20 +73,9 @@ const Admin = ({ AddFood, admin }) => {
               placeholder="Enter Price"
             ></input>
             <br />
-            <label>Enter Quantity</label> <br />
-            <input
-              type="text"
-              name="quantity"
-              value={quantity}
-              onChange={onChange}
-              placeholder="Enter Quantity"
-            ></input>
+            <input type="file" name="postImage" onChange={onImageSelect} />
             <br />
             <button>Submit</button>
-            <br />
-            <Link to="/admincontrolreal">AdminControlReal</Link>
-            <br></br>
-            <Link to="/admincontrol">admincontrol</Link>
           </form>
         </div>
       </div>

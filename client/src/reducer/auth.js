@@ -1,4 +1,13 @@
-import { SIGNIN, SIGNUP, USER_LOADED } from '../actions/types';
+import {
+  SIGNIN,
+  SIGNUP,
+  USER_LOADED,
+  AUTH_ERROR,
+  LOGIN_FAIL,
+  LOGOUT,
+  REGISTER_FAIL,
+} from '../actions/types';
+
 const initialState = {
   token: localStorage.getItem('token'),
   isAuthenticated: null,
@@ -34,6 +43,15 @@ export default function (state = initialState, action) {
         isAuthenticated: true,
         loading: false,
         user: payload,
+      };
+    }
+    case (AUTH_ERROR, LOGIN_FAIL, REGISTER_FAIL, LOGOUT): {
+      return {
+        ...state,
+        isAuthenticated: false,
+        loading: false,
+        user: null,
+        token: null,
       };
     }
     default:

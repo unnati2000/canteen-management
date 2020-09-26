@@ -1,4 +1,4 @@
-import { GET_ITEM, ORDERS } from './types';
+import { GET_ITEM } from './types';
 import axios from 'axios';
 
 export const GetAllSelectedItems = (food) => async (dispatch) => {

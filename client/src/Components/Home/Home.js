@@ -1,11 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
+import Navbar from '../Navbar/Navbar';
 import { Link } from 'react-router-dom';
+import Spinner from '../Spinner/Spinner';
 import { GetAllSelectedItems } from '../../actions/food';
 const Home = ({ GetAllSelectedItems }) => {
-  useState(() => {
-    GetAllSelectedItems();
-  }, []);
   return (
     <div>
       <div className="home_header">
@@ -24,9 +23,10 @@ const Home = ({ GetAllSelectedItems }) => {
             <path d="m349.673 89.651h-113.567c-12.134 0-22.005 9.872-22.005 22.005v28.975c-3.293-.281-6.623-.433-9.988-.433s-6.695.152-9.988.433v-28.975c0-12.133-9.872-22.005-22.005-22.005h-76.884c-4.142 0-7.5 3.358-7.5 7.5s3.358 7.5 7.5 7.5h76.885c3.862 0 7.005 3.143 7.005 7.005v31.251c-44.621 9.801-79.733 45.276-88.989 90.097h-31.583c-3.862 0-7.005-3.143-7.005-7.005v-114.343c0-3.862 3.143-7.005 7.005-7.005h6.682c4.142 0 7.5-3.358 7.5-7.5s-3.358-7.5-7.5-7.5h-6.682c-12.133 0-22.005 9.872-22.005 22.005v114.343c0 12.133 9.872 22.005 22.005 22.005h29.498c-.207 2.831-.316 5.689-.316 8.571 0 2.883.109 5.74.316 8.571h-29.498c-12.134 0-22.005 9.872-22.005 22.005v114.343c0 12.133 9.871 22.005 22.005 22.005h113.566c12.134 0 22.005-9.872 22.005-22.005v-28.974c3.293.281 6.623.433 9.988.433s6.695-.152 9.988-.433v28.974c0 12.134 9.872 22.005 22.005 22.005h54.941c4.143 0 7.5-3.358 7.5-7.5s-3.357-7.5-7.5-7.5h-54.941c-3.862 0-7.005-3.143-7.005-7.005v-31.251c44.621-9.801 79.733-45.276 88.989-90.097h31.583c3.862 0 7.004 3.143 7.004 7.005v114.343c0 3.862-3.142 7.005-7.004 7.005h-28.626c-4.143 0-7.5 3.358-7.5 7.5s3.357 7.5 7.5 7.5h28.626c12.133 0 22.004-9.872 22.004-22.005v-114.343c0-12.133-9.871-22.005-22.004-22.005h-29.499c.207-2.831.316-5.688.316-8.571s-.109-5.74-.316-8.571h29.499c12.133 0 22.004-9.872 22.004-22.005v-114.343c0-12.134-9.871-22.005-22.004-22.005zm-170.547 311.842c0 3.862-3.143 7.005-7.005 7.005h-113.567c-3.862 0-7.005-3.143-7.005-7.005v-114.342c0-3.862 3.143-7.005 7.005-7.005h31.582c9.256 44.821 44.368 80.295 88.989 90.097v31.25zm24.987-43.541c-55.9 0-101.377-45.478-101.377-101.377s45.478-101.378 101.377-101.378 101.377 45.478 101.377 101.378-45.477 101.377-101.377 101.377zm152.564-131.953c0 3.862-3.142 7.005-7.004 7.005h-31.583c-9.256-44.82-44.368-80.295-88.989-90.097v-31.251c0-3.862 3.143-7.005 7.005-7.005h113.567c3.862 0 7.004 3.143 7.004 7.005z" />
           </g>
         </svg>
+        <Navbar />
         <div className="content">
-          <h1>My canteen</h1>
-          <h3>Sub heading</h3>
+          <h1>Tiwari's Kitchen</h1>
+          <h3>Chase the flavors</h3>
           <button>View More</button>
         </div>
       </div>
@@ -129,7 +129,22 @@ const Home = ({ GetAllSelectedItems }) => {
             </Link>
           </div>
         </div>
-        <Link to="/orders">Orders</Link>
+        <div className="our_content">
+          <h2>Message to students</h2>
+          <div>
+            <img
+              src="https://cdn5.vectorstock.com/i/1000x1000/29/24/mister-chef-vector-7912924.jpgs"
+              alt="chef"
+            />
+            <h3>Chefuji</h3>
+            <p>
+              What is the importance of healthy eating? Depending on where you
+              live, you might start your day with eating food first before doing
+              an activity. Food is the most important thing in our lives besides
+              water. We promise you to provide good and healthy food
+            </p>
+          </div>
+        </div>
       </div>
       <div className="footer">
         <p>Khana order karna</p>

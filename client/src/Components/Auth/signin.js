@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { Redirect } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { signin } from '../../actions/auth';
+import Alert from '../Alert/Alert';
 import '../style.css';
 
 const SignIn = ({ signin, isAuthenticated }) => {
@@ -28,6 +29,7 @@ const SignIn = ({ signin, isAuthenticated }) => {
       <div className="signup">
         <div className="signup_card">
           <form className="signup_form" onSubmit={onSubmit}>
+            <Alert />
             <h2>Sign In </h2>
 
             <label>Enter Email</label>
@@ -54,6 +56,8 @@ const SignIn = ({ signin, isAuthenticated }) => {
             <br />
 
             <button type="submit">Submit</button>
+            <h4>Don't have an account</h4>
+            <Link to="/signup">Create one</Link>
           </form>
         </div>
       </div>

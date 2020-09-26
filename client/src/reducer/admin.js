@@ -1,4 +1,9 @@
-import { ADD_ITEM, GET_ITEM } from '../actions/types';
+import {
+  ADD_ITEM,
+  GET_ITEM,
+  DELETE_ITEM,
+  ADD_ITEM_ERROR,
+} from '../actions/types';
 
 const initialState = {
   items: [],
@@ -19,6 +24,19 @@ export default function (state = initialState, action) {
       return {
         ...state,
         items: payload,
+      };
+    }
+
+    case DELETE_ITEM: {
+      return {
+        ...state,
+        items: state.items.filter((item) => item._id !== payload),
+      };
+    }
+    case ADD_ITEM_ERROR: {
+      return {
+        ...state,
+        item: null,
       };
     }
     default: {

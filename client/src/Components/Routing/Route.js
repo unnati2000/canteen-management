@@ -1,34 +1,28 @@
 import React, { Fragment } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Home from '../Home/Home';
-import SignUp from '../Auth/signin';
+import SignUp from '../Auth/signup';
 import SignIn from '../Auth/signin';
-import AdminControlReal from '../Admin/AdminControlReal';
 import Admin from '../Admin/Admin';
-import AdminControl from '../Admin/AdminControl';
 import PrivateRoute from './PrivateRoute';
 import AdminComponent from './AdminComponent';
 import Chinese from '../Food/Chinese';
 import Orders from '../User/Orders';
-
+import History from '../User/History';
+import Payment from '../User/Payment';
 const Routes = () => {
   return (
     <Router>
       <Fragment>
         <Switch>
+          <Route exact component={SignIn} path="/signin" />
+          <Route exact component={SignUp} path="/signup" />
           <PrivateRoute exact component={Home} path="/" />
           <PrivateRoute exact component={Orders} path="/orders" />
-          <Route exact component={SignUp} path="/signup" />
-          <Route exact component={SignIn} path="/signin" />
+          <PrivateRoute exact component={History} path="/history" />
+          <PrivateRoute exact component={Payment} path="/payment" />
           <AdminComponent exact component={Admin} path="/admin" />
           <PrivateRoute exact component={Chinese} path="/:food" />
-
-          <AdminComponent exact component={AdminControl} path="/admincontrol" />
-          <AdminComponent
-            exact
-            component={AdminControlReal}
-            path="/admincontrolreal"
-          />
         </Switch>
       </Fragment>
     </Router>

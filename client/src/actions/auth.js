@@ -1,6 +1,15 @@
-import { SIGNUP, SIGNIN, USER_LOADED } from './types';
+import {
+  SIGNUP,
+  SIGNIN,
+  USER_LOADED,
+  AUTH_ERROR,
+  LOGIN_FAIL,
+  REGISTER_FAIL,
+  LOGOUT,
+} from './types';
 import axios from 'axios';
 import setAuthToken from '../Utils/setAuthToken';
+import { setAlert } from './alert';
 
 export const loadUser = () => async (dispatch) => {
   if (localStorage.token) {
@@ -13,7 +22,9 @@ export const loadUser = () => async (dispatch) => {
       payload: res.data,
     });
   } catch (err) {
-    console.log(err);
+    dispatch({
+      type: AUTH_ERROR,
+    });
   }
 };
 
@@ -28,7 +39,14 @@ export const signup = (formData) => async (dispatch) => {
 
     dispatch(loadUser());
   } catch (error) {
-    console.log(error);
+    const errors = error.response.data.errors;
+    console.log(error.response.data.errors);
+    if (errors) {
+      errors.forEach((err) => dispatch(setAlert(err.msg)));
+    }
+    dispatch({
+      type: REGISTER_FAIL,
+    });
   }
 };
 
@@ -42,6 +60,19 @@ export const signin = (formData) => async (dispatch) => {
     });
     dispatch(loadUser());
   } catch (error) {
-    console.log(error);
+    const errors = error.response.data.errors;
+
+    if (errors) {
+      errors.forEach((err) => dispatch(setAlert(err.msg)));
+    }
+    dispatch({
+      type: LOGIN_FAIL,
+    });
   }
+};
+
+export const Logout = () => async (dispatch) => {
+  dispatch({
+    type: LOGOUT,
+  });
 };

@@ -4,35 +4,54 @@ const User = require('../Models/auth');
 const Food = require('../Models/FoodItem');
 const router = express.Router();
 const auth = require('../Middleware/auth');
+const upload = require('../Middleware/cloudinary');
 const { check, validationResult } = require('express-validator');
 
 // add item : POST
 router.post(
   '/additem',
-  // [
-  //   auth,
-  //   check('name', 'FoodName is required'),
-  //   check('foodItem', 'Food category is required'),
-  //   check('price', 'Price is required'),
-  //   check('quantity', 'Qunatity is required'),
-  // ],
+  [
+    auth,
+    upload,
+    [
+      auth,
+      check('name', 'FoodName is required'),
+      check('foodItem', 'Food category is required'),
+      check('price', 'Price is required'),
+      check('quantity', 'Qunatity is required'),
+    ],
+  ],
   async (req, res) => {
-    // const errors = validationResult(req);
-    // if (!errors.isEmpty()) {
-    //   return res.status(400).json({ errors: errors.array() });
-    // }
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
 
     try {
-      const { foodItem, name, price, quantity } = req.body;
+      const { foodItem, name, price } = req.body;
+
+      // const food = {
+      //   foodItem,
+      //   name,
+      //   price,
+      //   image: req.file.path,
+      // };
+
+      // const ifexists = await Food.findById(id);
+      // if (ifexists) {
+      //   ifexists = await Food.findOneAndUpdate({ $set: food }, { $new: true });
+      // }
+
+      // ifexists = new Food(food);
+      // await ifexists.save();
+
       const food = new Food({
         foodItem,
         name,
         price,
-        quantity,
+        image: req.file.path,
       });
-
       await food.save();
-      res.json('added item');
     } catch (error) {
       console.error(error.message);
       res.status(500).send('Server Error');
@@ -44,63 +63,23 @@ router.post(
 
 router.delete('/delete/:id', auth, async (req, res) => {
   try {
-    const id = req.user.id;
-    const isadmin = await User.findById(id);
-    if (isadmin.isAdmin === true) {
-      const del = await Food.findByIdAndDelete(req.params.id);
-      res.json('deleted');
-    } else {
-      res.json('unauthorised');
-    }
+    const del = await Food.findByIdAndDelete(req.params.id);
   } catch (error) {
     console.error(err.message);
     res.status(500).send('Server Error');
   }
 });
 
-// get chinese: GET
+// get : GET
 
 router.get('/:food', auth, async (req, res) => {
   const food = req.params.food;
-  if (food === 'chinese') {
-    try {
-      const chinese = await Food.find({ foodItem: 'chinese' });
-      res.json(chinese);
-      //console.log(chinese);
-    } catch (error) {
-      console.error(err.message);
-      res.status(500).send('Server Error');
-    }
-  }
-
-  if (food === 'breakfast') {
-    try {
-      const breakfast = await Food.find({ foodItem: 'breakfast' });
-      res.json(breakfast);
-    } catch (error) {
-      console.error(err.message);
-      res.status(500).send('Server Error');
-    }
-  }
-
-  if (food === 'indian') {
-    try {
-      const indian = await Food.find({ foodItem: 'indian' });
-      res.json(indian);
-    } catch (error) {
-      console.error(err.message);
-      res.status(500).send('Server Error');
-    }
-  }
-
-  if (food === 'chat') {
-    try {
-      const chat = await Food.find({ foodItem: 'chat' });
-      res.json(chat);
-    } catch (error) {
-      console.error(err.message);
-      res.status(500).send('Server Error');
-    }
+  try {
+    const foodItems = await Food.find({ foodItem: food });
+    res.json(foodItems);
+  } catch (error) {
+    console.error(err.message);
+    res.status(500).send('Server Error');
   }
 });
 

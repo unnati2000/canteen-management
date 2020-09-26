@@ -1,6 +1,6 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
-
+import Spinner from '../Spinner/Spinner';
 import { connect } from 'react-redux';
 
 const AdminRoute = ({
@@ -12,7 +12,7 @@ const AdminRoute = ({
     {...rest}
     render={(props) =>
       loading ? (
-        'loading'
+        <Spinner />
       ) : user ? (
         user.name === 'admin' ? (
           <Component {...props} />

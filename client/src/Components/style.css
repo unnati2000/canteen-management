@@ -11,8 +11,25 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+body {
   font-family: 'Raleway', sans-serif;
 }
+
+button {
+  cursor: pointer;
+}
+
+.alert {
+  border: 2px solid rgb(252, 56, 56);
+  border-radius: 6px;
+  margin: 30px;
+  padding: 12px;
+  font-weight: bold;
+  color: rgb(252, 56, 56);
+}
+
 .signup {
   background: linear-gradient(
       to right,
@@ -76,6 +93,54 @@
   margin: 20px 0px;
 }
 
+@media (max-width: 700px) {
+  .signup {
+    padding: 60px;
+  }
+  .signup_form {
+    background-color: white;
+    height: 680px;
+    margin: 0 60px;
+    text-align: center;
+    border-radius: 10px;
+    padding: 20px 0;
+  }
+  .signup_form input {
+    border: none;
+    padding: 15px 40px;
+    font-size: 17px;
+    border-radius: 15px;
+    width: 60%;
+    margin: 20px 0;
+    box-shadow: 0px 18px 38px rgba(0, 0, 0, 0.1),
+      0px 10px 10px rgba(0, 0, 0, 0.1);
+  }
+}
+
+@media (max-width: 500px) {
+  .signup {
+    padding: 30px;
+  }
+  .signup_form {
+    background-color: white;
+    height: 680px;
+    margin: 0 10px;
+    text-align: center;
+    border-radius: 10px;
+    padding: 20px 0;
+  }
+  .signup_form input {
+    border: none;
+    padding: 15px 40px;
+    font-size: 17px;
+    border-radius: 15px;
+    width: 70%;
+    margin: 20px 0;
+    box-shadow: 0px 18px 38px rgba(0, 0, 0, 0.1),
+      0px 10px 10px rgba(0, 0, 0, 0.1);
+  }
+}
+
 /* ########################### HOME ###################################3 */
 
 #logo {
@@ -85,6 +150,26 @@
   display: flex;
   margin: 25px;
   position: absolute;
+}
+
+.link {
+  color: #ffffff;
+  margin-right: 20px;
+  text-decoration: none;
+  font-size: 20px;
+}
+
+.link:hover {
+  font-weight: bolder;
+  color: #929aab;
+}
+
+.user_nav,
+.admin_nav {
+  text-align: right;
+  padding-top: 40px;
+  padding-right: 20px;
+  color: white;
 }
 
 .home_header {
@@ -154,6 +239,52 @@
   text-align: center;
   padding: 40px 30px;
 }
+
+@media (max-width: 800px) {
+  .menu {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 20px;
+    text-align: center;
+    padding: 40px 30px;
+  }
+}
+
+@media (max-width: 600px) {
+  .menu {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    text-align: center;
+    padding: 40px 10px;
+  }
+}
+
+.our_content {
+  background: linear-gradient(
+      to right,
+      rgba(255, 254, 254, 0.85),
+      rgba(255, 255, 255, 0.85)
+    ),
+    url('https://scx2.b-cdn.net/gfx/news/hires/2016/howcuttingdo.jpg');
+  height: 50vh;
+  background-repeat: no-repeat;
+  background-size: cover;
+  text-align: center;
+  padding: 30px;
+}
+
+.our_content img {
+  height: 100px;
+  width: 100px;
+  margin: 20px 0;
+  border-radius: 100%;
+}
+
+.our_content p {
+  font-size: 20px;
+  padding: 35px 30px;
+}
+
 .variety {
   padding: 20px 30px;
   border-radius: 10px;
@@ -251,6 +382,13 @@
   border-top-right-radius: 130px;
 }
 
+.footer i {
+  padding-top: 20px;
+}
+.footer i:hover {
+  color: #63686e;
+}
+
 .footer p {
   padding-top: 20px;
 }
@@ -277,16 +415,22 @@
     rgba(1, 1, 1, 0.79),
     rgba(21, 31, 36, 0.79)
   );
-  height: 100vh;
+  height: 130vh;
+  padding-top: 40px;
 }
 
 .admin_form {
   background-color: white;
-  height: 800px;
+  height: 950px;
   margin: 0 170px;
   text-align: center;
   border-radius: 10px;
   padding: 60px 0;
+}
+
+.admin_form h3 {
+  padding: 20px 0;
+  font-size: 30px;
 }
 
 .admin_form input {
@@ -401,12 +545,55 @@
   height: 200px;
   width: 200px;
 }
+.food_title {
+  text-align: left;
+}
+
+@media (max-width: 700px) {
+  .food_menu {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 50px;
+    margin: 0 20px;
+  }
+  .food_item img {
+    height: 300px;
+    width: 300px;
+  }
+  .food_item {
+    padding: 30px 40px;
+    box-shadow: 0 28px 30px rgba(112, 108, 97, 0.6),
+      0px 10px 10px rgba(112, 108, 97, 0.7);
+    border-radius: 15px;
+  }
+}
+
+@media (max-width: 500px) {
+  .food_menu {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-gap: 50px;
+  }
+  .food_item img {
+    height: 300px;
+    width: 300px;
+  }
+}
 
 /* ################################ ADMIN CONTROL ########################################### */
 .admin_control {
   align-items: center;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
+  grid-gap: 60px;
+  margin: 40px 60px;
+}
+
+@media (max-width: 600px) {
+  .admin_control {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+  }
 }
 
 .order {
@@ -437,4 +624,141 @@
 
 .canteen_table table td {
   padding-left: 60px;
+}
+.variety {
+  text-align: center;
+}
+
+.admin_control_nav {
+  background: black;
+  height: 100px;
+  color: #929aab;
+  text-align: center;
+  padding-top: 20px;
+  font-size: 25px;
+}
+
+@media (max-width: 600px) {
+  .admin_control {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+
+/* ############################### ORDER #######################################3 */
+.personal {
+  padding-top: 30px;
+}
+
+.personal img {
+  width: 150px;
+  height: 150px;
+  margin: 20px 0;
+  border-radius: 100%;
+}
+
+.order_button {
+  padding: 12px 40px;
+  margin: 20px 0;
+  background: #111111;
+  border-radius: 10px;
+  border: none;
+  color: #929aab;
+  font-size: 17px;
+  box-shadow: 0px 18px 38px rgba(0, 0, 0, 0.1), 0px 10px 10px rgba(0, 0, 0, 0.1);
+}
+
+.get_total {
+  padding: 20px 0;
+}
+
+.title_table {
+  margin: 15px 0;
+}
+.content_table {
+  margin: 15px 0;
+}
+.add {
+  padding: 4px 6px;
+  font-size: 15px;
+  font-weight: bold;
+  background: #0af56c;
+  color: #ffffff;
+  border: none;
+}
+
+.remove {
+  padding: 4px 6px;
+  font-size: 15px;
+  font-weight: bold;
+  background: #fa0505;
+  color: #ffffff;
+  border: none;
+}
+.clear {
+  padding: 4px 6px;
+  font-size: 15px;
+  font-weight: bold;
+  background: #457ffc;
+  color: #ffffff;
+  border: none;
+}
+
+.admin_control_button {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 15px;
+}
+
+.spinner {
+  text-align: center;
+  height: 300px;
+  width: 300px;
+}
+.personal_data {
+  color: #e8e8e8;
+  padding: 25px;
+  text-align: center;
+  font-size: 25px;
+}
+
+.personal_data img {
+  margin-top: 30px;
+  height: 100px;
+  width: 100px;
+  border-radius: 100px;
+}
+
+.history {
+  background: linear-gradient(
+    to right,
+    rgba(1, 1, 1, 0.79),
+    rgba(21, 31, 36, 0.79)
+  );
+  padding-bottom: 20px;
+}
+
+.history_box {
+  background: white;
+  margin: 30px 40px;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.order_box {
+  padding-top: 20px;
+}
+
+.cart {
+  padding-left: 20px;
+  padding-top: 30px;
+}
+
+.payment_buttons {
+  text-align: center;
+}
+
+.cart h2,
+.cart h3 {
+  padding-top: 10px;
 }

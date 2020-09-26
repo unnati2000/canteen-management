@@ -9,9 +9,10 @@ connectDB();
 
 app.use(cors());
 
+app.use(require('./Routes/order'));
 app.use(require('./Routes/auth'));
 app.use(require('./Routes/food'));
-app.use(require('./Routes/order'));
+
 app.use(
   cors({
     origin: 'http://localhost:5000',

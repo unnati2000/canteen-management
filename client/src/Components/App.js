@@ -4,6 +4,7 @@ import { Provider } from 'react-redux';
 import { loadUser } from '../actions/auth';
 import setAuthToken from '../Utils/setAuthToken';
 import Routing from './Routing/Route';
+import Alert from './Alert/Alert';
 
 import store from '../store';
 const App = () => {
@@ -15,6 +16,7 @@ const App = () => {
     <Provider store={store}>
       <Router>
         <Fragment>
+          <Alert />
           <Switch>
             <Routing />
           </Switch>

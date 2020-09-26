@@ -1,38 +1,73 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
+import { DeleteItem } from '../../actions/admin';
 import { GetAllSelectedItems } from '../../actions/food';
 import { AddToCart } from '../../actions/cart';
-
-const Chinese = ({ GetAllSelectedItems, AddToCart, food: { food } }) => {
+import Spinner from '../Spinner/Spinner';
+const Chinese = ({
+  GetAllSelectedItems,
+  AddToCart,
+  DeleteItem,
+  match,
+  food: { food },
+  auth: { user },
+}) => {
   useEffect(() => {
-    GetAllSelectedItems();
+    console.log(match.params.food);
+    GetAllSelectedItems(match.params.food);
   }, [GetAllSelectedItems]);
-  if (food) {
-    console.log(food);
-  } else {
-    console.log('wait');
-  }
 
+  const history = useHistory();
+  var foodname;
+  food.map((item) => {
+    foodname = item.foodItem;
+  });
+  console.log(food);
   return (
     <div className="food_div">
       {food ? (
         <div>
           <nav className="chinese_nav">
-            <h1>{food.foodItem}</h1>
-            <a href="">Cart</a>
+            <div className="food_title" key={foodname}>
+              <h1>{foodname}</h1>
+            </div>
           </nav>
           <div className="menu">
             <div className="food_menu">
               {food.length > 0 ? (
                 food.map((item) => (
                   <div className="food_item" key={item._id}>
-                    <img src="https://choosinfo.net/wp-content/uploads/2020/03/AN138-Pizza-732x549-Thumb_0.jpg" />
+                    <img src={item.image} />
                     <h2>{item.name}</h2>
                     <h3>₹ {item.price}</h3>
                     <h4>Quantity: {item.quantity}</h4>
-                    <button onClick={() => AddToCart(item)}>Add to cart</button>
-                    <Link to="/orders">Order Now</Link>
+                    {user ? (
+                      user.name === 'admin' ? (
+                        <div className="admin_control_buttons">
+                          <button
+                            onClick={() => {
+                              DeleteItem(item._id);
+                              history.push('/');
+                            }}
+                          >
+                            Delete
+                          </button>
+                        </div>
+                      ) : (
+                        <div>
+                          <button onClick={() => AddToCart(item)}>
+                            Add to cart
+                          </button>
+                          <Link to="/orders">
+                            <h4>Orders</h4>
+                            <i className="fas fa-cart fa-2x"></i>
+                          </Link>
+                        </div>
+                      )
+                    ) : (
+                      ''
+                    )}
                   </div>
                 ))
               ) : (
@@ -43,7 +78,7 @@ const Chinese = ({ GetAllSelectedItems, AddToCart, food: { food } }) => {
           <footer> </footer>
         </div>
       ) : (
-        <h1>Loading</h1>
+        <Spinner />
       )}
     </div>
   );
@@ -51,7 +86,10 @@ const Chinese = ({ GetAllSelectedItems, AddToCart, food: { food } }) => {
 
 const mapStateToProps = (state) => ({
   food: state.food,
+  auth: state.auth,
 });
-export default connect(mapStateToProps, { GetAllSelectedItems, AddToCart })(
-  Chinese
-);
+export default connect(mapStateToProps, {
+  GetAllSelectedItems,
+  AddToCart,
+  DeleteItem,
+})(Chinese);

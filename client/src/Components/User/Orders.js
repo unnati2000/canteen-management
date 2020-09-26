@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import {
   clearItemFromCart,
   removeFromCart,
@@ -9,74 +10,102 @@ import {
 import { getCartTotal } from '../../Utils/cart';
 import StripeButton from '../pAYMENT/payment';
 const Orders = ({
+  auth: { user },
   cart,
   AddToCart,
   removeFromCart,
   clearItemFromCart,
   PostHistory,
 }) => {
-  console.log('cart', cart);
-  // const [formData, setFormData] = useState({
-  //   orders: {
-  //     foodItem: '',
-  //     name: '',
-  //     price: '',
-  //     quantity: '',
-  //   },
-  //   total: '',
-  // });
-
   const total = getCartTotal(cart);
-
+  const history = useHistory();
   return (
     <div className="order">
       <div className="orders">
         <h1>Headers</h1>
       </div>
-      <div>
-        <h1>Personal Info</h1>
-        <h3>Name:</h3>
-        <h3>Branch:</h3>
-      </div>
+      {user ? (
+        <div className="personal">
+          <h1>Personal Info</h1>
+          <img src="https://img2.pngio.com/pamela-wilkins-country-stitches-gravatar-png-400_400.png" />
+          <h3>Name: {user.name}</h3>
+          <h3>Branch: {user.branch}</h3>
+        </div>
+      ) : (
+        ''
+      )}
 
       <div className="canteen_table">
         <table>
-          <tr>
+          <tr className="title_table">
             <th>Food Item Type</th>
             <th>Food name</th>
             <th>Price</th>
             <th>Quantity</th>
+            <th>Increase</th>
+            <th>Decrease</th>
+            <th>Clear Cart</th>
           </tr>
           {cart.map((cartItem) => {
             return (
-              <div>
-                <tr>
-                  <td>{cartItem.foodItem}</td>
-                  <td>{cartItem.name}</td>
-                  <td>{cartItem.price}</td>
-                  <td>{cartItem.quantity}</td>
-                  <button onClick={() => AddToCart(cartItem)}>+</button>
-                  <button onClick={() => removeFromCart(cartItem)}>-</button>
-                  <button onClick={() => clearItemFromCart(cartItem._id)}>
+              <tr className="content_table">
+                <th>{cartItem.foodItem}</th>
+                <th>{cartItem.name}</th>
+                <th>{cartItem.price}</th>
+                <th>{cartItem.quantity}</th>
+                <th>
+                  <button className="add" onClick={() => AddToCart(cartItem)}>
+                    +
+                  </button>
+                </th>
+                <th>
+                  <button
+                    className="remove"
+                    onClick={() => removeFromCart(cartItem)}
+                  >
+                    -
+                  </button>
+                </th>
+                <th>
+                  <button
+                    className="clear"
+                    onClick={() => clearItemFromCart(cartItem._id)}
+                  >
                     x
                   </button>
-                </tr>
-              </div>
+                </th>
+              </tr>
             );
           })}
         </table>
+
         <br />
-        <div>{<h1>{getCartTotal(cart)}</h1>}</div>
-        <button onClick={() => PostHistory({ cart, total })}>
+
+        <br />
+      </div>
+      <div>
+        {<h1 className="get_total">Total Price: {getCartTotal(cart)}</h1>}
+      </div>
+
+      <div>
+        <button
+          className="order_button"
+          onClick={() => {
+            PostHistory({ cart, total });
+            history.push('/payment');
+          }}
+        >
           Place My order
         </button>
-        <StripeButton />
+        <br />
+        <br />
       </div>
     </div>
   );
 };
 const mapStateToProps = (state) => ({
   cart: state.cart.cartItems,
+  auth: state.auth,
 });
 export default connect(mapStateToProps, {
   AddToCart,
