@@ -1,10 +1,10 @@
-import React, { useEffect } from 'react';
-import { connect } from 'react-redux';
-import { Link, useHistory } from 'react-router-dom';
-import { DeleteItem } from '../../actions/admin';
-import { GetAllSelectedItems } from '../../actions/food';
-import { AddToCart } from '../../actions/cart';
-import Spinner from '../Spinner/Spinner';
+import React, { useEffect } from "react";
+import { connect } from "react-redux";
+import { Link, useHistory } from "react-router-dom";
+import { DeleteItem } from "../../actions/admin";
+import { GetAllSelectedItems } from "../../actions/food";
+import { AddToCart } from "../../actions/cart";
+import Spinner from "../Spinner/Spinner";
 const Chinese = ({
   GetAllSelectedItems,
   AddToCart,
@@ -14,9 +14,8 @@ const Chinese = ({
   auth: { user },
 }) => {
   useEffect(() => {
-    console.log(match.params.food);
     GetAllSelectedItems(match.params.food);
-  }, [GetAllSelectedItems]);
+  }, [GetAllSelectedItems, match.params.food]);
 
   const history = useHistory();
   var foodname;
@@ -38,17 +37,17 @@ const Chinese = ({
               {food.length > 0 ? (
                 food.map((item) => (
                   <div className="food_item" key={item._id}>
-                    <img src={item.image} />
+                    <img src={item.image} alt={item.name} />
                     <h2>{item.name}</h2>
                     <h3>₹ {item.price}</h3>
                     <h4>Quantity: {item.quantity}</h4>
                     {user ? (
-                      user.name === 'admin' ? (
+                      user.name === "admin" ? (
                         <div className="admin_control_buttons">
                           <button
                             onClick={() => {
                               DeleteItem(item._id);
-                              history.push('/');
+                              history.push("/");
                             }}
                           >
                             Delete
@@ -66,7 +65,7 @@ const Chinese = ({
                         </div>
                       )
                     ) : (
-                      ''
+                      ""
                     )}
                   </div>
                 ))

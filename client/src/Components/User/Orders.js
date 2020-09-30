@@ -1,14 +1,14 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import React from "react";
+import { connect } from "react-redux";
+import { useHistory } from "react-router-dom";
 import {
   clearItemFromCart,
   removeFromCart,
   AddToCart,
   PostHistory,
-} from '../../actions/cart';
-import { getCartTotal } from '../../Utils/cart';
-import StripeButton from '../pAYMENT/payment';
+} from "../../actions/cart";
+import { getCartTotal } from "../../Utils/cart";
+
 const Orders = ({
   auth: { user },
   cart,
@@ -27,12 +27,15 @@ const Orders = ({
       {user ? (
         <div className="personal">
           <h1>Personal Info</h1>
-          <img src="https://img2.pngio.com/pamela-wilkins-country-stitches-gravatar-png-400_400.png" />
+          <img
+            src="https://img2.pngio.com/pamela-wilkins-country-stitches-gravatar-png-400_400.png"
+            alt="User avatar"
+          />
           <h3>Name: {user.name}</h3>
           <h3>Branch: {user.branch}</h3>
         </div>
       ) : (
-        ''
+        ""
       )}
 
       <div className="canteen_table">
@@ -92,7 +95,7 @@ const Orders = ({
           className="order_button"
           onClick={() => {
             PostHistory({ cart, total });
-            history.push('/payment');
+            history.push("/payment");
           }}
         >
           Place My order
