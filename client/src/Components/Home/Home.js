@@ -9,7 +9,7 @@ const Home = ({ GetAllSelectedItems }) => {
       <div className="home_header">
         <svg
           id="logo"
-          enable-background="new 0 0 512 512"
+          enableBackground="new 0 0 512 512"
           height="512"
           viewBox="0 0 512 512"
           width="512"
@@ -37,7 +37,7 @@ const Home = ({ GetAllSelectedItems }) => {
             <p>
               <svg
                 id="brfast"
-                enable-background="new 0 0 511.997 511.997"
+                enableBackground="new 0 0 511.997 511.997"
                 height="512"
                 viewBox="0 0 511.997 511.997"
                 width="512"
@@ -84,7 +84,7 @@ const Home = ({ GetAllSelectedItems }) => {
             <p>
               <svg
                 id="Capa_1"
-                enable-background="new 0 0 512.004 512.004"
+                enableBackground="new 0 0 512.004 512.004"
                 height="512"
                 viewBox="0 0 512.004 512.004"
                 width="512"

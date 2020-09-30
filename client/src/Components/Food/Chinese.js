@@ -22,7 +22,6 @@ const Chinese = ({
   food.map((item) => {
     foodname = item.foodItem;
   });
-  console.log(food);
   return (
     <div className="food_div">
       {food ? (
