@@ -1,22 +1,22 @@
-const express = require('express');
-const mongoose = require('mongoose');
-const User = require('../Models/auth');
-const bcrypt = require('bcryptjs');
+const express = require("express");
+const mongoose = require("mongoose");
+const User = require("../Models/Auth");
+const bcrypt = require("bcryptjs");
 const router = express.Router();
-const config = require('config');
-const jwt = require('jsonwebtoken');
-const { check, validationResult } = require('express-validator');
-const auth = require('../Middleware/auth');
+const config = require("config");
+const jwt = require("jsonwebtoken");
+const { check, validationResult } = require("express-validator");
+const auth = require("../Middleware/auth");
 
 // sign up: POST
 router.post(
-  '/signup',
+  "/signup",
   [
-    check('name', 'Name is required').not().isEmpty(),
-    check('email', 'Please include a valid email').isEmail(),
+    check("name", "Name is required").not().isEmpty(),
+    check("email", "Please include a valid email").isEmail(),
     check(
-      'password',
-      'Please enter a password with 6 or more characters'
+      "password",
+      "Please enter a password with 6 or more characters"
     ).isLength({ min: 6 }),
   ],
   async (req, res) => {
@@ -45,7 +45,7 @@ router.post(
         },
       };
 
-      jwt.sign(payload, config.get('JWTSecret'), (err, token) => {
+      jwt.sign(payload, config.get("JWTSecret"), (err, token) => {
         if (err) {
           throw err;
         }
@@ -53,17 +53,17 @@ router.post(
       });
     } catch (error) {
       console.log(error.message);
-      res.status(500).send('Server Token error');
+      res.status(500).send("Server Token error");
     }
   }
 );
 
 //sign in: POST
 router.post(
-  '/signin',
+  "/signin",
   [
-    check('email', 'Please include a valid email').isEmail(),
-    check('password', 'Password is required').exists(),
+    check("email", "Please include a valid email").isEmail(),
+    check("password", "Password is required").exists(),
   ],
   async (req, res) => {
     const errors = validationResult(req);
@@ -79,7 +79,7 @@ router.post(
       if (!user) {
         return res
           .status(400)
-          .json({ errors: [{ msg: 'Email does not exist' }] });
+          .json({ errors: [{ msg: "Email does not exist" }] });
       }
 
       // check password
@@ -89,7 +89,7 @@ router.post(
       if (!isMatch) {
         return res
           .status(400)
-          .json({ errors: [{ msg: 'Invalid Credentials' }] });
+          .json({ errors: [{ msg: "Invalid Credentials" }] });
       }
 
       // JWT Token
@@ -102,7 +102,7 @@ router.post(
 
       jwt.sign(
         payload,
-        config.get('JWTSecret'),
+        config.get("JWTSecret"),
 
         (err, token) => {
           if (err) throw err;
@@ -111,21 +111,21 @@ router.post(
       );
     } catch (error) {
       console.log(error.message);
-      res.status(500).send('Server error');
+      res.status(500).send("Server error");
     }
   }
 );
 
 //get user: GET
 
-router.get('/user', auth, async (req, res) => {
+router.get("/user", auth, async (req, res) => {
   try {
-    const user = await User.findById(req.user.id).select('-password');
+    const user = await User.findById(req.user.id).select("-password");
     /// console.log(user);
     res.json(user);
   } catch (err) {
     console.error(err.message);
-    res.status(500).send('Server error');
+    res.status(500).send("Server error");
   }
 });
 

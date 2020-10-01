@@ -1,15 +1,15 @@
-import { ADD_ITEM, GET_ITEM, DELETE_ITEM, ADD_ITEM_ERROR } from './types';
-import axios from 'axios';
-import { setAlert } from './alert';
+import { ADD_ITEM, GET_ITEM, DELETE_ITEM, ADD_ITEM_ERROR } from "./types";
+import axios from "axios";
+import { setAlert } from "./alert";
 
 export const AddFood = (formData) => async (dispatch) => {
   const config = {
     headers: {
-      'Content-Type': 'multipart/form-data',
+      "Content-Type": "multipart/form-data",
     },
   };
   try {
-    const res = await axios.post('/additem', formData, config);
+    const res = await axios.post("/additem", formData, config);
     dispatch({
       type: ADD_ITEM,
       payload: res.data,
@@ -39,7 +39,7 @@ export const GetAllSelectedItems = (food) => async (dispatch) => {
 
 export const DeleteItem = (id) => async (dispatch) => {
   try {
-    const res = await axios.delete(`/delete/${id}`);
+    await axios.delete(`/delete/${id}`);
     dispatch({
       type: DELETE_ITEM,
       payload: id,

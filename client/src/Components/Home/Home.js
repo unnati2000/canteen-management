@@ -1,16 +1,15 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import Navbar from '../Navbar/Navbar';
-import { Link } from 'react-router-dom';
-import Spinner from '../Spinner/Spinner';
-import { GetAllSelectedItems } from '../../actions/food';
+import React from "react";
+import { connect } from "react-redux";
+import Navbar from "../Navbar/Navbar";
+import { Link } from "react-router-dom";
+import { GetAllSelectedItems } from "../../actions/food";
 const Home = ({ GetAllSelectedItems }) => {
   return (
     <div>
       <div className="home_header">
         <svg
           id="logo"
-          enable-background="new 0 0 512 512"
+          enableBackground="new 0 0 512 512"
           height="512"
           viewBox="0 0 512 512"
           width="512"
@@ -38,7 +37,7 @@ const Home = ({ GetAllSelectedItems }) => {
             <p>
               <svg
                 id="brfast"
-                enable-background="new 0 0 511.997 511.997"
+                enableBackground="new 0 0 511.997 511.997"
                 height="512"
                 viewBox="0 0 511.997 511.997"
                 width="512"
@@ -52,7 +51,7 @@ const Home = ({ GetAllSelectedItems }) => {
 
             <Link
               className="button"
-              onClick={() => GetAllSelectedItems('breakfast')}
+              onClick={() => GetAllSelectedItems("breakfast")}
               to="/breakfast"
             >
               View More
@@ -74,7 +73,7 @@ const Home = ({ GetAllSelectedItems }) => {
 
             <Link
               className="button"
-              onClick={() => GetAllSelectedItems('chinese')}
+              onClick={() => GetAllSelectedItems("chinese")}
               to="/chinese"
             >
               View More
@@ -85,7 +84,7 @@ const Home = ({ GetAllSelectedItems }) => {
             <p>
               <svg
                 id="Capa_1"
-                enable-background="new 0 0 512.004 512.004"
+                enableBackground="new 0 0 512.004 512.004"
                 height="512"
                 viewBox="0 0 512.004 512.004"
                 width="512"
@@ -99,7 +98,7 @@ const Home = ({ GetAllSelectedItems }) => {
             <Link
               className="button"
               to="/indian"
-              onClick={() => GetAllSelectedItems('indian')}
+              onClick={() => GetAllSelectedItems("indian")}
             >
               View More
             </Link>
@@ -122,7 +121,7 @@ const Home = ({ GetAllSelectedItems }) => {
             </p>
             <Link
               className="button"
-              onClick={() => GetAllSelectedItems('chat')}
+              onClick={() => GetAllSelectedItems("chat")}
               to="/chat"
             >
               View More

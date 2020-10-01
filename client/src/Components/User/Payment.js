@@ -1,9 +1,8 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import Spinner from '../Spinner/Spinner';
-import StripeButton from '../pAYMENT/payment';
-import cart from '../../reducer/cart';
-import { getCartTotal } from '../../Utils/cart';
+import React from "react";
+import { connect } from "react-redux";
+import Spinner from "../Spinner/Spinner";
+import StripeButton from "../pAYMENT/payment";
+import { getCartTotal } from "../../Utils/cart";
 const Payment = ({ getCartTotal, cart }) => {
   let total = 0;
   cart.map((item) => {

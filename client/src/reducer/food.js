@@ -1,4 +1,4 @@
-import { GET_ITEM, ORDERS } from '../actions/types';
+import { GET_ITEM } from "../actions/types";
 const initialState = {
   food: [],
 };
