@@ -5,6 +5,7 @@ import { DeleteItem } from '../../actions/admin';
 import { GetAllSelectedItems } from '../../actions/food';
 import { AddToCart } from '../../actions/cart';
 import Spinner from '../Spinner/Spinner';
+import NavBar from '../Navbar/Navbar';
 const Chinese = ({
   GetAllSelectedItems,
   AddToCart,
@@ -30,7 +31,12 @@ const Chinese = ({
         <div>
           <nav className="chinese_nav">
             <div className="food_title" key={foodname}>
-              <h1>{foodname}</h1>
+              <div className="food_h1">
+                <h1>{foodname}</h1>
+              </div>
+              <div className="navbar">
+                <NavBar />
+              </div>
             </div>
           </nav>
           <div className="menu">

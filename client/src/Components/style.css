@@ -261,11 +261,11 @@ button {
 
 .our_content {
   background: linear-gradient(
-      to right,
-      rgba(255, 254, 254, 0.85),
-      rgba(255, 255, 255, 0.85)
-    ),
-    url('https://scx2.b-cdn.net/gfx/news/hires/2016/howcuttingdo.jpg');
+    to right,
+    rgba(255, 254, 254, 0.85),
+    rgba(255, 255, 255, 0.85)
+  );
+
   height: 50vh;
   background-repeat: no-repeat;
   background-size: cover;
@@ -277,6 +277,7 @@ button {
   height: 100px;
   width: 100px;
   margin: 20px 0;
+  box-shadow: 10px 10px 30px 30px rgba(0, 0, 0, 0.15);
   border-radius: 100%;
 }
 
@@ -487,8 +488,6 @@ button {
 
 /* ################################## MENu ###################################### */
 .chinese_nav {
-  display: flex;
-  justify-content: space-evenly;
   font-size: 20px;
   padding: 30px 0;
   list-style: none;
@@ -546,7 +545,12 @@ button {
   width: 200px;
 }
 .food_title {
-  text-align: left;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.food_h1 {
+  padding-top: 30px;
 }
 
 @media (max-width: 700px) {

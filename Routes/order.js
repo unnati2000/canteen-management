@@ -26,15 +26,10 @@ router.get('/userorder', auth, async (req, res) => {
 router.post('/orders', auth, async (req, res) => {
   try {
     const user = req.user.id;
-    const d = new Date();
-    const day = d.getDate();
-    const m = d.getMonth();
-    const y = d.getFullYear();
     const order = new Order({
       user,
       orders: req.body.cart,
       totalPrice: req.body.total,
-      date: day + m + y,
     });
     await order.save();
     res.json('sahi ja rahe h');

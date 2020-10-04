@@ -9,6 +9,7 @@ import {
 } from '../../actions/cart';
 import { getCartTotal } from '../../Utils/cart';
 import StripeButton from '../pAYMENT/payment';
+import NavBar from '../Navbar/Navbar';
 const Orders = ({
   auth: { user },
   cart,
@@ -22,7 +23,14 @@ const Orders = ({
   return (
     <div className="order">
       <div className="orders">
-        <h1>Headers</h1>
+        <div className="food_title">
+          <div className="food_h1">
+            <h1>Orders</h1>
+          </div>
+          <div className="navbar">
+            <NavBar />
+          </div>
+        </div>
       </div>
       {user ? (
         <div className="personal">

@@ -24,6 +24,9 @@ const NavBar = ({ auth: { user, isAuthenticated }, Logout }) => {
             <Link to="/history" className="link">
               History
             </Link>
+            <Link className="link" onClick={() => Logout()}>
+              <i classname="fas fa-sign-out"></i>Logout
+            </Link>
           </div>
         )
       ) : (
