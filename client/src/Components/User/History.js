@@ -40,9 +40,10 @@ const History = ({ auth: { user }, GetHistory, history: { history } }) => {
                       <h3>Price: {ord.price}</h3>
                     </div>
                   ))}
-                  <h2>Date: {order.date}</h2>
+                  <h2>
+                    Date: <Moment date={order.date} />
+                  </h2>
                   <h1>Total Price: {order.totalPrice}</h1>
-                  <hr></hr>
                 </div>
               ))
             ) : (

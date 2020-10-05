@@ -20,7 +20,7 @@ const AdminRoute = ({
           <h1>Unauthorized</h1>
         )
       ) : (
-        'loading'
+        <Spinner />
       )
     }
   />

@@ -9,6 +9,7 @@ import { removeFromCart, addToCart, getCartTotal } from '../Utils/cart';
 const initialState = {
   cartItems: [],
   totalPrice: 0,
+  totalQuantity: 0,
   history: [],
 };
 
@@ -19,12 +20,14 @@ export default function (state = initialState, action) {
       return {
         ...state,
         cartItems: addToCart(state.cartItems, payload),
+        totalQuantity: state.totalQuantity + 1,
       };
     }
     case REMOVE_FROM_CART: {
       return {
         ...state,
         cartItems: removeFromCart(state.cartItems, payload),
+        totalQuantity: state.totalQuantity - 1,
       };
     }
     case CLEAR_ITEM_FROM_CART: {
@@ -33,6 +36,10 @@ export default function (state = initialState, action) {
         cartItems: state.cartItems.filter(
           (cartItem) => cartItem._id !== payload
         ),
+        totalQuantity:
+          state.totalQuantity -
+          state.cartItems.filter((cartItem) => cartItem._id === payload)[0]
+            .quantity,
       };
     }
     case POST_HISTORY: {

@@ -16,3 +16,5 @@ export const REGISTER_FAIL = 'REGISTER_FAIL';
 export const DELETE_ITEM = 'DELETE_ITEM';
 export const ADD_ITEM_ERROR = 'ADD_ITEM_ERROR';
 export const LOGOUT = 'LOGOUT';
+export const GET_ADMIN_ORDERS = 'GET_ADMIN_ORDERS';
+export const ORDER_READY = 'ORDER_READY';

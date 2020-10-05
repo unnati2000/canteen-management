@@ -96,15 +96,8 @@ const Orders = ({
       </div>
 
       <div>
-        <button
-          className="order_button"
-          onClick={() => {
-            PostHistory({ cart, total });
-            history.push('/payment');
-          }}
-        >
-          Place My order
-        </button>
+        <StripeButton />
+
         <br />
         <br />
       </div>

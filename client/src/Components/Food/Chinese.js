@@ -47,7 +47,7 @@ const Chinese = ({
                     <img src={item.image} />
                     <h2>{item.name}</h2>
                     <h3>₹ {item.price}</h3>
-                    <h4>Quantity: {item.quantity}</h4>
+
                     {user ? (
                       user.name === 'admin' ? (
                         <div className="admin_control_buttons">
@@ -65,10 +65,6 @@ const Chinese = ({
                           <button onClick={() => AddToCart(item)}>
                             Add to cart
                           </button>
-                          <Link to="/orders">
-                            <h4>Orders</h4>
-                            <i className="fas fa-cart fa-2x"></i>
-                          </Link>
                         </div>
                       )
                     ) : (

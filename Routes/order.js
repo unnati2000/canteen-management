@@ -39,4 +39,39 @@ router.post('/orders', auth, async (req, res) => {
   }
 });
 
+router.get('/orderplaced', auth, async (req, res) => {
+  try {
+    const pendingOrders = await Order.find({ isOpen: true }).populate(
+      'user',
+      'name branch'
+    );
+    res.json(pendingOrders);
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).send('Server Error');
+  }
+});
+
+router.put('/orderplaced/:id', auth, async (req, res) => {
+  try {
+    const order = await Order.findOneAndUpdate(
+      { _id: req.params.id },
+      { isOpen: false },
+      { new: true }
+    );
+    res.json(order);
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).send('Server Error');
+  }
+});
+
+router.post('/orderplaced/:id', auth, async (req, res) => {
+  try {
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).send('Server Error');
+  }
+});
+
 module.exports = router;

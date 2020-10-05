@@ -10,6 +10,7 @@ import Chinese from '../Food/Chinese';
 import Orders from '../User/Orders';
 import History from '../User/History';
 import Payment from '../User/Payment';
+import OrderPlaced from '../Admin/OrderPlaced';
 const Routes = () => {
   return (
     <Router>
@@ -21,6 +22,7 @@ const Routes = () => {
           <PrivateRoute exact component={Orders} path="/orders" />
           <PrivateRoute exact component={History} path="/history" />
           <PrivateRoute exact component={Payment} path="/payment" />
+          <AdminComponent exact component={OrderPlaced} path="/orderplaced" />
           <AdminComponent exact component={Admin} path="/admin" />
           <PrivateRoute exact component={Chinese} path="/:food" />
         </Switch>

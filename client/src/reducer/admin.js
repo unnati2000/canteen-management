@@ -3,10 +3,13 @@ import {
   GET_ITEM,
   DELETE_ITEM,
   ADD_ITEM_ERROR,
+  GET_ADMIN_ORDERS,
+  ORDER_READY,
 } from '../actions/types';
 
 const initialState = {
   items: [],
+  pendingOrders: [],
   item: null,
 };
 
@@ -37,6 +40,17 @@ export default function (state = initialState, action) {
       return {
         ...state,
         item: null,
+      };
+    }
+    case GET_ADMIN_ORDERS: {
+      return { ...state, pendingOrders: payload };
+    }
+    case ORDER_READY: {
+      return {
+        ...state,
+        pendingOrders: state.pendingOrders.filter(
+          (item) => item._id !== payload
+        ),
       };
     }
     default: {
