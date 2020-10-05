@@ -15,16 +15,14 @@ const Chinese = ({
   auth: { user },
 }) => {
   useEffect(() => {
-    console.log(match.params.food);
     GetAllSelectedItems(match.params.food);
-  }, [GetAllSelectedItems]);
+  }, [GetAllSelectedItems, match.params.food]);
 
   const history = useHistory();
   var foodname;
   food.map((item) => {
     foodname = item.foodItem;
   });
-  console.log(food);
   return (
     <div className="food_div">
       {food ? (
@@ -44,7 +42,7 @@ const Chinese = ({
               {food.length > 0 ? (
                 food.map((item) => (
                   <div className="food_item" key={item._id}>
-                    <img src={item.image} />
+                    <img src={item.image} alt={item.name} />
                     <h2>{item.name}</h2>
                     <h3>₹ {item.price}</h3>
 

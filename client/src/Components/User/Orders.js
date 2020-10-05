@@ -35,7 +35,10 @@ const Orders = ({
       {user ? (
         <div className="personal">
           <h1>Personal Info</h1>
-          <img src="https://img2.pngio.com/pamela-wilkins-country-stitches-gravatar-png-400_400.png" />
+          <img
+            src="https://img2.pngio.com/pamela-wilkins-country-stitches-gravatar-png-400_400.png"
+            alt="User avatar"
+          />
           <h3>Name: {user.name}</h3>
           <h3>Branch: {user.branch}</h3>
         </div>

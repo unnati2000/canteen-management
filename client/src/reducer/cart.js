@@ -4,8 +4,8 @@ import {
   REMOVE_FROM_CART,
   POST_HISTORY,
   GET_HISTORY,
-} from '../actions/types';
-import { removeFromCart, addToCart, getCartTotal } from '../Utils/cart';
+} from "../actions/types";
+import { removeFromCart, addToCart } from "../Utils/cart";
 const initialState = {
   cartItems: [],
   totalPrice: 0,

@@ -46,7 +46,7 @@ export const GetAllSelectedItems = (food) => async (dispatch) => {
 
 export const DeleteItem = (id) => async (dispatch) => {
   try {
-    const res = await axios.delete(`/delete/${id}`);
+    await axios.delete(`/delete/${id}`);
     dispatch({
       type: DELETE_ITEM,
       payload: id,
