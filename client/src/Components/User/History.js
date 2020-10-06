@@ -43,7 +43,11 @@ const History = ({ auth: { user }, GetHistory, history }) => {
                   <h2>
                     Date: <Moment date={order.date} />
                   </h2>
+                  <br></br>
+                  <hr></hr>
+                  <br></br>
                   <h1>Total Price: {order.totalPrice}</h1>
+                  {order.isOpen === true ? <h2>Not Ready</h2> : <h2>Ready</h2>}
                 </div>
               ))
             ) : (
