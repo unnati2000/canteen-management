@@ -15,7 +15,7 @@ router.get('/orders', auth, async (req, res) => {
 
 router.get('/userorder', auth, async (req, res) => {
   try {
-    const result = await Order.find({ user: req.user.id });
+    const result = await Order.find({ user: req.user.id }).sort('-date');
     res.json(result);
   } catch (error) {
     console.error(error.message);
@@ -35,7 +35,7 @@ router.post('/orders', auth, async (req, res) => {
     console.log('step 2');
     await order.save();
     console.log('step 1');
-    res.json('sahi ja rahe h');
+    res.json(order);
   } catch (error) {
     console.error(error.message);
     res.status(500).send('Server Error');
@@ -47,7 +47,7 @@ router.get('/orderplaced', auth, async (req, res) => {
     const pendingOrders = await Order.find({ isOpen: true }).populate(
       'user',
       'name branch'
-    );
+    ).sort('-date');
     res.json(pendingOrders);
   } catch (error) {
     console.error(error.message);

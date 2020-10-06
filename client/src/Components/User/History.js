@@ -3,7 +3,7 @@ import Moment from 'react-moment';
 import { connect } from 'react-redux';
 import { GetHistory } from '../../actions/cart';
 import Spinner from '../Spinner/Spinner';
-const History = ({ auth: { user }, GetHistory, history: { history } }) => {
+const History = ({ auth: { user }, GetHistory, history }) => {
   useState(() => {
     GetHistory();
   }, [GetHistory]);
@@ -30,7 +30,7 @@ const History = ({ auth: { user }, GetHistory, history: { history } }) => {
       <div>
         {history ? (
           <div className="history_box">
-            {history.length > 0 ? (
+            {history.length ? (
               history.map((order) => (
                 <div className="order_box">
                   {order.orders.map((ord) => (
@@ -43,20 +43,11 @@ const History = ({ auth: { user }, GetHistory, history: { history } }) => {
                   <h2>
                     Date: <Moment date={order.date} />
                   </h2>
-                  <br></br>
-                  <hr></hr>
-                  <br></br>
                   <h1>Total Price: {order.totalPrice}</h1>
-                  <br></br>
-                  {order.isOpen === true ? (
-                    <h2>Status: Not Ready</h2>
-                  ) : (
-                    <h2>Status: Ready</h2>
-                  )}
                 </div>
               ))
             ) : (
-              <Spinner />
+              <h1>No orders placed yet</h1>
             )}
           </div>
         ) : (
@@ -66,8 +57,9 @@ const History = ({ auth: { user }, GetHistory, history: { history } }) => {
     </div>
   );
 };
+
 const mapStateToProps = (state) => ({
-  history: state.cart,
+  history: state.cart.history,
   auth: state.auth,
 });
 

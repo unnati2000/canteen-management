@@ -1,8 +1,8 @@
-import React from "react";
-import { connect } from "react-redux";
-import Navbar from "../Navbar/Navbar";
-import { Link } from "react-router-dom";
-import { GetAllSelectedItems } from "../../actions/food";
+import React from 'react';
+import { connect } from 'react-redux';
+import Navbar from '../Navbar/Navbar';
+import { Link } from 'react-router-dom';
+import { GetAllSelectedItems } from '../../actions/food';
 const Home = ({ GetAllSelectedItems }) => {
   return (
     <div>
@@ -26,10 +26,12 @@ const Home = ({ GetAllSelectedItems }) => {
         <div className="content">
           <h1>Tiwari's Kitchen</h1>
           <h3>Chase the flavors</h3>
-          <button>View More</button>
+          <a href="#menu">
+            <button>View More</button>
+          </a>
         </div>
       </div>
-      <div className="main_div">
+      <div className="main_div" id="menu">
         <h1>Menu Items</h1>
         <div className="menu">
           <div className="variety breakfast">
@@ -51,7 +53,7 @@ const Home = ({ GetAllSelectedItems }) => {
 
             <Link
               className="button"
-              onClick={() => GetAllSelectedItems("breakfast")}
+              onClick={() => GetAllSelectedItems('breakfast')}
               to="/breakfast"
             >
               View More
@@ -73,7 +75,7 @@ const Home = ({ GetAllSelectedItems }) => {
 
             <Link
               className="button"
-              onClick={() => GetAllSelectedItems("chinese")}
+              onClick={() => GetAllSelectedItems('chinese')}
               to="/chinese"
             >
               View More
@@ -98,7 +100,7 @@ const Home = ({ GetAllSelectedItems }) => {
             <Link
               className="button"
               to="/indian"
-              onClick={() => GetAllSelectedItems("indian")}
+              onClick={() => GetAllSelectedItems('indian')}
             >
               View More
             </Link>
@@ -121,7 +123,7 @@ const Home = ({ GetAllSelectedItems }) => {
             </p>
             <Link
               className="button"
-              onClick={() => GetAllSelectedItems("chat")}
+              onClick={() => GetAllSelectedItems('chat')}
               to="/chat"
             >
               View More
