@@ -21,9 +21,7 @@ app.use(
 );
 
 const PORT = process.env.PORT || 5000;
-app.get('/', (req, res) => {
-  res.send('done!');
-});
+
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static('client/build'));
   app.get('*', (req, res) => {
