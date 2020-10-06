@@ -5,7 +5,7 @@ import { PostHistory } from '../../actions/cart';
 import cart from '../../reducer/cart';
 import { getCartTotal } from '../../Utils/cart';
 import { useHistory } from 'react-router-dom';
-const Payment = ({ getCartTotal, cart }) => {
+const Payment = ({ getCartTotal, cart, PostHistory }) => {
   const history = useHistory();
   let total = 0;
   cart.map((item) => {
@@ -26,7 +26,7 @@ const Payment = ({ getCartTotal, cart }) => {
             </tr>
             {cart.length > 0 ? (
               cart.map((item) => (
-                <tr>
+                <tr className="content_table">
                   <th>Food Item Type: {item.foodItem}</th>
                   <th>Food Item name: {item.name}</th>
                   <th> Price: {item.price}</th>
@@ -34,7 +34,7 @@ const Payment = ({ getCartTotal, cart }) => {
                 </tr>
               ))
             ) : (
-              <Spinner />
+              <h1>No items </h1>
             )}
           </table>
         </div>

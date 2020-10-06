@@ -25,13 +25,16 @@ router.get('/userorder', auth, async (req, res) => {
 
 router.post('/orders', auth, async (req, res) => {
   try {
+    console.log('step 1');
     const user = req.user.id;
     const order = new Order({
       user,
       orders: req.body.cart,
       totalPrice: req.body.total,
     });
+    console.log('step 2');
     await order.save();
+    console.log('step 1');
     res.json('sahi ja rahe h');
   } catch (error) {
     console.error(error.message);
