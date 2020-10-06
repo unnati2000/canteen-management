@@ -14,12 +14,6 @@ app.use(require('./Routes/order'));
 app.use(require('./Routes/auth'));
 app.use(require('./Routes/food'));
 
-app.use(
-  cors({
-    origin: 'http://localhost:5000',
-  })
-);
-
 const PORT = process.env.PORT || 5000;
 
 if (process.env.NODE_ENV === 'production') {
