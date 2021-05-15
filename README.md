@@ -2,11 +2,11 @@
 
 ## A MERN Stack Application
 
-![Header](https://i.imgur.com/8aAjigJ.png)
-![Menu](https://i.imgur.com/fHsdE97.png)
-![Indian](https://i.imgur.com/IGXy4ZX.png)
-![Cart](https://i.imgur.com/cOGpByG.png)
-![Stripe](https://i.imgur.com/62kqakk.png)
+![](https://i.imgur.com/DKRfYGe.png)
+![](https://i.imgur.com/oHcosDT.png)
+![](https://i.imgur.com/oHcosDT.png)
+![](blob:https://imgur.com/21d1b5bc-284e-440c-bd5e-a626851cc1fa)
+![](https://i.imgur.com/QetqfL3.png)
 
 ## Contributors
 
