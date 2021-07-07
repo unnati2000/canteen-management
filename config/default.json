@@ -1,0 +1,7 @@
+{
+  "MongoURI": "mongodb+srv://unnati:unnati@cluster0.muvzn.mongodb.net/<dbname>?retryWrites=true&w=majority",
+  "JWTSecret": "aSecretStringForJWT",
+  "CLOUDINARY_CLOUD_NAME": "dsdhcbxrf",
+  "CLOUDINARY_API_KEY": "285271827356815",
+  "CLOUDINARY_API_SECRET": "E9uouPvR2kDJPaF1a5Yrosq6rwA"
+}
